@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoWeather</title>
+    <link rel="icon" href="img/icon/weather-icon.png" type="image/png">
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="eel.js"></script>
+</head>
+<body>
+    <div class="weather">
+        <div class="container">
+            <div class="weather__wrap">
+                <div class="weather__title">
+                    <h1>Welcome to RoWeather!</h1>
+                    <p>Write your city under to get actuall weather information.</p>
+                </div>
+                <div class="weather__form">
+                    <input type="text" id="location" placeholder="Enter your city: ">
+                    <button class="btn btn-search">Get weather</button>
+                </div>
+                <div class="weather__info">
+                    Here is the weather info...
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jQuery v3.6.0.js"></script>
+    <script type="text/javascript">
+        async function display_weather(){
+            let place = document.querySelector('#location').value;
+
+            let result = await eel.get_weather(place)();
+            let info = document.querySelector('.weather__info');
+            info.innerHTML = result;
+            info.classList.add('active')
+        }
+        jQuery('.btn-search').on('click', function(e){
+            display_weather();
+        });
+    </script>
+</body>
+</html>
